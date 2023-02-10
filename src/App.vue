@@ -1,12 +1,70 @@
 <template>
-  <v-app>
+
+  <div class="container">
+    <div class="search-container">
+
+
+
+      <input type="text" v-model="pokeName" />
+      <button @click="submitSearch">Buscar</button>
+
+
+    </div>
+
+    <div class="container-dados">
+      <div v-if="pokeInfo.name">
+        <p>Name: {{ pokeInfo.name }}</p>
+        <img :src="pokeInfo.sprites.front_default" />
+
+        <p>Height: {{ pokeInfo.height }}</p>
+        <p>Weight: {{ pokeInfo.weight }}</p>
+        <p>Base Experience: {{ pokeInfo.base_experience }}</p>
+
+        <h3>Types</h3>
+        <ul>
+          <li v-for="type in pokeInfo.types" :key="type.type.name">
+            {{ type.type.name }}
+          </li>
+        </ul>
+
+        <h3>Abilities</h3>
+        <ul>
+          <li v-for="ability in pokeInfo.abilities" :key="ability.ability.name">
+            {{ ability.ability.name }}
+          </li>
+        </ul>
+
+        
+        <h3>Stats</h3>
+        <ul>
+          <li v-for="stat in pokeInfo.stats" :key="stat.stat.name">
+            {{ stat.stat.name }}: {{ stat.base_stat }}
+          </li>
+        </ul>
+
+       
+
+
+        <h3>Evoluções</h3>
+        <ul>
+          <li v-for="evolution in evolutionChain" :key="evolution.species.name">
+            {{ evolution.species.name }}
+          </li>
+
+          
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- <v-app>
     <h1>Ola povo lindo</h1>
     <v-container>
       <v-card>
         <v-container>
           <v-text-field v-model="search" label="Buscar" placeholder="Digite o seu Pokemon"></v-text-field>
-
-          <!-- {{ pokemons }} -->
 
           <v-row>
             <v-col cols="3" v-for="pokemon in filtrarPokemons" :key="pokemon.name">
@@ -24,13 +82,6 @@
 
               </v-card>
 
-
-              <!-- <v-card>
-                <v-img :src="pokemon.sprites.front_default" />
-                <v-card-title>
-                  {{ pokemon.name }}
-                </v-card-title>
-              </v-card> -->
             </v-col>
           </v-row>
         </v-container>
@@ -101,8 +152,7 @@
 
                 </v-col>
               </v-row>
-              <!-- {{ seleciona_pokemon }}
-            -->
+              
 
             </v-container>
 
@@ -118,8 +168,37 @@
     </v-container>
 
 
-  </v-app>
+  </v-app> -->
+
+
+
 </template>
+
+<style>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+</style>
 
 <script>
 
@@ -138,10 +217,14 @@ export default {
 
   data() {
     return {
-      pokemons: [],
-      search: '',
-      abrir_dialog: false,
-      seleciona_pokemon: null,
+      // pokemons: [],
+      // search: '',
+      // abrir_dialog: false,
+      // seleciona_pokemon: null,
+      searchTerm: '',
+      pokeName: '',
+      pokeInfo: {},
+      evolutionChain: [],
     }
   },
 
@@ -153,6 +236,25 @@ export default {
     })
   },
   methods: {
+    async submitSearch() {
+      axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${this.pokeName}`)
+        .then(async response => {
+          this.pokeInfo = response.data;
+
+          const evolutionChainResponse = await axios.get(this.pokemon.species.url);
+          this.evolutionChain = evolutionChainResponse.data.evolution_chain.chain;
+
+
+
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+
+
+
     get_id(pokemon) {
       return Number(pokemon.url.split('/')[6])
     },
@@ -168,8 +270,8 @@ export default {
     filtrar_moves(pokemon) {
       return pokemon.moves.filter(item => {
         let incluir = false;
-        for(let version of item.version_group_details){
-          if(version.version_group == "sword-shield"){
+        for (let version of item.version_group_details) {
+          if (version.version_group == "sword-shield") {
             incluir = true;
           }
         }
