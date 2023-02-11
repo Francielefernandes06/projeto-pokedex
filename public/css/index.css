@@ -69,6 +69,7 @@ input[type="text"] {
   border: #5d4e75 ;
   background-color: #5d4e75;
   margin-bottom: 10px;
+  font-family: Roboto;
 }
 
 .pesquisar{
@@ -79,10 +80,12 @@ input[type="text"] {
   border: none;
   border-radius: 5px;
   margin-bottom: 10px;
+  font-family: Roboto;
 }
 
 .pesquisar:hover{
   background-color: #4d5b64;
+  color: #ffffff;
 }
 
 .title {
