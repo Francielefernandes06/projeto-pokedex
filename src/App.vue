@@ -1,15 +1,19 @@
 <template  v-if="pokeInfo.types">
 
 
-  <div class="container" >
-   
+  <div class="container">
 
 
-    <div class="search-container" >
-      <input type="text"  v-model="pokeName">
+
+    <div class="search-container">
+      <form @submit.prevent="submitSearch" class="search-container">
+        <input type="text" v-model="pokeName">
+        <button class="pesquisar" type="submit">Buscar</button>
+      </form>
+      <!-- <input type="text"  v-model="pokeName">
       
      
-      <button class="pesquisar" @click="submitSearch">Buscar</button>
+      <button class="pesquisar" @click="submitSearch">Buscar</button> -->
 
     </div>
 
@@ -21,7 +25,8 @@
       <div class="subgrid">
         <div class="emoji"><img src=""></div>
         <div class="type" v-if="pokeInfo.types">
-          <v-chip  label class="mr-5 white--text" v-for="type in pokeInfo.types" :key="type.type.name" :style="{ backgroundColor: getBackgroundColorByType(type.type.name)}">
+          <v-chip label class="mr-5 white--text" v-for="type in pokeInfo.types" :key="type.type.name"
+            :style="{ backgroundColor: getBackgroundColorByType(type.type.name) }">
             {{ type.type.name }}
           </v-chip>
 
@@ -79,8 +84,8 @@
 </template>
 
 <style>
-.header{
-  
+.header {
+
   background-color: #DEF3FD;
   display: flex;
   justify-content: center;
@@ -91,7 +96,6 @@
   text-transform: uppercase;
   margin-bottom: 20px;
 }
-
 </style>
 
 <script>
@@ -114,50 +118,61 @@ export default {
 
   data() {
     return {
-      color: 'primary',
+
       searchTerm: '',
       pokeName: '',
       pokeInfo: {},
       evolutionChain: [],
       evolucoes: {},
-      pokemonType: 'water',
+
     }
   },
 
 
 
   mounted() {
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=151").then((resposta) => {
-      this.pokemons = resposta.data.results
-    })
+    this.pokeInfo = {};
+    // axios.get("https://pokeapi.co/api/v2/pokemon?limit=151").then((resposta) => {
+    //   this.pokemons = resposta.data.results
+    // })
   },
   methods: {
 
 
     async submitSearch() {
+      console.log('SubmitSearch iniciado');
+
+      this.pokeInfo = {};
+
       axios
         .get(`https://pokeapi.co/api/v2/pokemon/${this.pokeName}`)
         .then(async response => {
+          console.log('Requisição 1 concluída');
+
           this.pokeInfo = response.data;
 
           // Verifica se a propriedade species existe
           if (this.pokeInfo.species) {
+            console.log('Propriedade species existe');
+
             // Faz a requisição para buscar a Evolution Chain do pokémon
             axios.get(this.pokeInfo.species.url)
               .then(response => {
+                console.log('Requisição 2 concluída');
 
                 // Armazena as informações da Evolution Chain em uma variável
                 this.evolutionChain = response.data.evolution_chain.url;
 
                 // Verifica se a propriedade evolution_chain existe
                 if (this.evolutionChain) {
+                  console.log('Propriedade evolution_chain existe');
+
                   // Faz a requisição para buscar as informações da Evolution Chain
                   axios.get(this.evolutionChain)
                     .then(response => {
-
+                      console.log('Requisição 3 concluída');
 
                       // Armazena as informações da Evolution Chain em uma variável
-
                       this.evolucoes = response.data.chain.evolves_to[0].species;
                       console.log(this.evolucoes.name);
 
@@ -166,7 +181,9 @@ export default {
                 }
 
               })
+
           }
+
         })
         .catch(error => {
           console.log(error);
@@ -175,7 +192,7 @@ export default {
 
     getBackgroundColorByType(type) {
       switch (type) {
-         case "grass":
+        case "grass":
           return "#33a165";
         case "poison":
           return "#7e0058";
