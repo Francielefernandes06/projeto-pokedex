@@ -6,14 +6,11 @@
 
 
     <div class="search-container">
-      <form @submit.prevent="submitSearch" class="search-container">
+      <form @submit.prevent="submitSearch">
         <input type="text" v-model="pokeName">
         <button class="pesquisar" type="submit">Buscar</button>
-      </form>
-      <!-- <input type="text"  v-model="pokeName">
+      </form>   
       
-     
-      <button class="pesquisar" @click="submitSearch">Buscar</button> -->
 
     </div>
 
@@ -145,7 +142,7 @@ export default {
       this.pokeInfo = {};
 
       axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${this.pokeName}`)
+        .get(`https://pokeapi.co/api/v2/pokemon/${this.pokeName.toLowerCase()}`)
         .then(async response => {
           console.log('Requisição 1 concluída');
 

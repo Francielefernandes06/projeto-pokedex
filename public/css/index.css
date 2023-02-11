@@ -55,6 +55,12 @@ body {
   padding: 20px;
 }
 
+.search-container form{
+  display: flex;
+  align-items:center;
+  gap: 1rem;
+}
+
 input[type="text"] {
   padding: 10px;
   font-size: 2rem;
