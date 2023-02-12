@@ -92,13 +92,23 @@ input[type="text"] {
   width: 90%;
   align-items: center;
 }
-.name{
-  background: red;
+
+.dados-pokemon .name {
+  text-transform: capitalize;
+  color: white;
+  font-size: 4rem;
+  font-weight: 900;
+
 }
+
 .title {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
 
 }
 
@@ -110,6 +120,17 @@ input[type="text"] {
   text-align: initial;
 }
 
+.type {
+  display: flex;
+  text-transform: capitalize;
+  color: white;
+  font-weight: 500;
+  justify-content: space-between;
+  width: 40%;
+}
+
+
+
 .status-pokemon {
   display: flex;
   justify-content: space-evenly;
@@ -117,10 +138,13 @@ input[type="text"] {
 }
 
 .details {
-  background-color: red;
+  
   display: flex;
   flex-direction: column;
   width: 100%;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
 
 }
 
@@ -139,30 +163,48 @@ input[type="text"] {
   user-select: none;
   right: 25rem;
   top: 30px;
-  z-index: 1; 
+  z-index: 1;
 }
 
-.stats{
-  background-color: red;
+.stats {
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 40%;
 }
-.graphics{
+
+
+
+.stats .title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.graphics {
   width: 100%;
 }
 
-.stats-dados{
+.stats-dados {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+
 }
 
-.dados-evolucoes{
-  background-color: red;
+.dados-evolucoes .name {
+  text-transform: capitalize;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+
 }
 
 /* 
@@ -260,25 +302,10 @@ input[type="text"] {
 
 .img-pokemon img {
   position: relative;
-  height: 23rem;
-  width: 23rem;
+  width: 90%;
 }
-
-.img-pokemon::before {
-  content: "";
-  display: block;
-  bottom: 0;
-  left: calc(50% - 100px);
-  position: absolute;
-  width: 200px;
-  height: 50%;
-  background-color: rgba(0, 0, 0, 0.1);
-  -webkit-mask-image: radial-gradient(ellipse 100% 40% at 50% 70%,
-      black 20%,
-      transparent 50%);
-  mask-image: radial-gradient(ellipse 100% 40% at 48% 78%,
-      black 20%,
-      transparent 70%);
+.imgPoke{
+  width: 90%;
 }
 
 .dados {
@@ -287,6 +314,7 @@ input[type="text"] {
   gap: 17rem;
   margin-top: 40px;
 }
+
 /* 
 .evolucoes .title {
   font-family: 'Roboto', sans-serif;

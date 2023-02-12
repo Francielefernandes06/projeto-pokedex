@@ -1,7 +1,8 @@
 <template  v-if="pokeInfo.types">
 
 
-  <div class="container text-center">
+  <div style="
+    gap: 2rem;" class="container text-center">
 
 
 
@@ -19,7 +20,9 @@
     </div>
 
     <div class="info justify-content-evenly" v-if="pokeInfo.name">
-      <div class="img-pokemon col-4"><img :src="pokeInfo.sprites.front_default" /></div>
+      <div class="img-pokemon col-4"><img style="
+    width: 60%;
+" :src="pokeInfo.sprites.front_default" /></div>
 
       <div class="dados-pokemon col-4">
         <div class="type" v-if="pokeInfo.types">
@@ -70,7 +73,9 @@
 
           <div class="name">{{ evolucoes.name }}</div>
 
-          <img
+          <img style="
+    width: 100%;
+"
             :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${evolucoes.url.split('/')[6]}.png`" />
         </div>
 
