@@ -1,7 +1,8 @@
 <template  v-if="pokeInfo.types">
 
 
-  <div class="container">
+  <div style="
+    gap: 2rem;" class="container text-center">
 
 
 
@@ -9,8 +10,8 @@
       <form @submit.prevent="submitSearch">
         <input type="text" v-model="pokeName">
         <button class="pesquisar" type="submit">Buscar</button>
-      </form>   
-      
+      </form>
+
 
     </div>
 
@@ -18,7 +19,74 @@
       {{ '#' + pokeInfo.id }}
     </div>
 
-    <div class="title" v-if="pokeInfo.name">
+    <div class="info justify-content-evenly" v-if="pokeInfo.name">
+      <div class="img-pokemon col-4"><img style="
+    width: 60%;
+" :src="pokeInfo.sprites.front_default" /></div>
+
+      <div class="dados-pokemon col-4">
+        <div class="type" v-if="pokeInfo.types">
+          <v-chip label class="mr-5 white--text" v-for="type in pokeInfo.types" :key="type.type.name"
+            :style="{ backgroundColor: getBackgroundColorByType(type.type.name) }">
+            {{ type.type.name }}
+          </v-chip>
+
+        </div>
+
+        <div class="name">{{ pokeInfo.name }}</div>
+
+
+        <div v-if="pokeInfo.name" class="details">
+          <div class="sub-dados justify-content-between">
+            <span>Height</span> <span>{{ pokeInfo.height }}</span>
+          </div>
+          <div class="sub-dados justify-content-between">
+            <span>Weight</span> <span>{{ pokeInfo.weight }}</span>
+          </div>
+          <div class="sub-dados justify-content-between">
+            <span>Base Experience:</span> <span>{{ pokeInfo.base_experience }}</span>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+    <div class="status-pokemon" v-if="pokeInfo.name">
+
+      <div class="stats">
+        <div class="title">Stats</div>
+        <div class="graphics" v-for="stat in pokeInfo.stats" :key="stat.stat.name">
+          <div class="stats-dados">
+            <div class="name">{{ stat.stat.name }}</div>
+            <div class="base"> {{ stat.base_stat }}</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="evolucoes">
+        <div class="dados-evolucoes" v-if="evolucoes">
+          <div class="title">Evolução</div>
+
+          <div class="name">{{ evolucoes.name }}</div>
+
+          <img style="
+    width: 100%;
+"
+            :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${evolucoes.url.split('/')[6]}.png`" />
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+
+    <!-- <div class="title" v-if="pokeInfo.name">
       <div class="subgrid">
         <div class="emoji"><img src=""></div>
         <div class="type" v-if="pokeInfo.types">
@@ -71,7 +139,7 @@
 
       </div>
 
-    </div>
+    </div> -->
 
 
   </div>
