@@ -1,4 +1,3 @@
-
 html,
 body {
   height: 100%;
@@ -9,6 +8,13 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  background-image: url('../img/capa.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+
+
 
   --fire: #ff7402;
   --grass: #33a165;
@@ -38,13 +44,6 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-image: url('../img/capa.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  
-  height: 100vh;
-  width: 100%;
 
 }
 
@@ -55,9 +54,9 @@ body {
   padding: 20px;
 }
 
-.search-container form{
+.search-container form {
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -66,13 +65,13 @@ input[type="text"] {
   font-size: 2rem;
   color: white;
   border-radius: 5px;
-  border: #5d4e75 ;
+  border: #5d4e75;
   background-color: #5d4e75;
   margin-bottom: 10px;
   font-family: Roboto;
 }
 
-.pesquisar{
+.pesquisar {
   padding: 10px;
   font-size: 1.5rem;
   color: white;
@@ -83,11 +82,19 @@ input[type="text"] {
   font-family: Roboto;
 }
 
-.pesquisar:hover{
+.pesquisar:hover {
   background-color: #4d5b64;
   color: #ffffff;
 }
 
+.info {
+  display: flex;
+  width: 90%;
+  align-items: center;
+}
+.name{
+  background: red;
+}
 .title {
   display: flex;
   flex-direction: column;
@@ -95,6 +102,70 @@ input[type="text"] {
 
 }
 
+.dados-pokemon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: initial;
+}
+
+.status-pokemon {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+}
+
+.details {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+
+.sub-dados {
+  display: flex;
+}
+
+
+.number {
+  position: absolute;
+  font-family: Roboto;
+  font-weight: 900;
+  font-size: 18vmax;
+
+  color: rgba(255, 255, 255, 0.096);
+  user-select: none;
+  right: 25rem;
+  top: 30px;
+  z-index: 1; 
+}
+
+.stats{
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 40%;
+}
+.graphics{
+  width: 100%;
+}
+
+.stats-dados{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  
+}
+
+.dados-evolucoes{
+  background-color: red;
+}
+
+/* 
 .subgrid {
   min-width: 50%;
   display: grid;
@@ -143,12 +214,18 @@ input[type="text"] {
 }
 
 .details {
-  grid-area: details;
-  width: 45%;
-  margin-left: 25rem;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
 }
 
-.details .row {
+.sub-dados {
+  display: flex;
+} */
+
+/* .details .row {
   display: flex;
   text-transform: capitalize;
   justify-content: space-between;
@@ -210,7 +287,7 @@ input[type="text"] {
   gap: 17rem;
   margin-top: 40px;
 }
-
+/* 
 .evolucoes .title {
   font-family: 'Roboto', sans-serif;
   width: min-content;
@@ -232,18 +309,9 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
-.stats {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: unset;
-  align-items: start;
-  position: relative;
-  top: 19rem;
-  right: 15rem; */
-}
-
+/* 
 .stats .title {
   font-family: 'Roboto', sans-serif;
   width: min-content;
@@ -271,7 +339,7 @@ input[type="text"] {
 
 }
 
-.row img{
+.row img {
   width: 13rem;
 
 }
@@ -285,7 +353,7 @@ input[type="text"] {
 .stats .base {
   width: 30px;
   font-family: 'Roboto', sans-serif;
-  color:rgba(255, 255, 255, 0.705);
+  color: rgba(255, 255, 255, 0.705);
   padding-left: 10px;
   font-weight: bold;
   font-size: 1.2rem;
@@ -310,8 +378,8 @@ input[type="text"] {
   user-select: none;
   right: 25rem;
   top: 30px;
-  z-index: 1;
-}
+  z-index: 1; 
+}*/
 
 
 
